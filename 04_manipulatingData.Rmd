@@ -1,0 +1,145 @@
+---
+title: "04_manipulatingData"
+author: "Jannine Chamorro"
+date: "9/5/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Lesson Plan:
+-Describe the purpose of the dplyr and tidyr packages.
+-Select certain columns in a data frame with the dplyr function select.
+-Extract certain rows in a data frame according to logical (boolean) conditions with the dplyr function filter .
+-Link the output of one dplyr function to the input of another function with the ‘pipe’ operator %>%.
+-Add new columns to a data frame that are functions of existing columns with mutate.
+-Use the split-apply-combine concept for data analysis.
+-Use summarize, group_by, and count to split a data frame into groups of observations, apply summary statistics for each group, and then combine the results.
+
+#1. Reading In and Inspecting Data
+
+```{r}
+## reading in our data
+
+
+## inspect the data
+
+
+## preview the data
+
+
+```
+
+#2. Selecting Columns and Filtering Rows
+
+Next, we’re going to learn some of the most common dplyr functions:
+
+select(): subset columns
+filter(): subset rows on conditions
+mutate(): create new columns by using information from other columns
+group_by() and summarize(): create summary statistics on grouped data
+count(): count discrete values
+
+```{r}
+## to select colums we use select()
+
+
+
+## to select ALL columns EXCEPT certain ones, put a “-” in front of the variable to exclude it
+
+
+
+## to choose rows based on a specific criterion, use filter()
+
+```
+
+#3. Pipes
+```{r}
+## selecting and filtering at the same time, using intermediate steps
+## create a new dataframe (df) by filtering our orginial df
+
+
+
+## now we can select columns from our new df
+
+
+
+
+## selecting and filtering by nesting functions
+
+
+
+
+## selecting and filtering using pipes
+##  PIPES ( %>% ) let you take the output of one function and send it directly to the next, which is useful when you need to do many things to the same dataset.
+
+
+## creating a new object/df with this smaller version of the data
+
+```
+
+
+#4. Mutate
+```{r}
+## create new columns based on the values in existing columns
+
+## create and column of weight in kg
+
+
+
+## create a new column based on the first new column 
+
+
+
+## create a new column based on the first new column 
+## just looking at the first few rows
+
+
+
+## remove NAs using filter function
+
+```
+
+#5. Summarize
+
+split-apply-combine paradigm: split the data into groups, apply some analysis to each group, and then combine the results
+
+```{r}
+## compute mean weight by sex
+
+
+## group by multiple columns
+
+
+
+## remove the missing values for weight before we attempt to calculate the summary statistics on weight
+## because the missing values are removed first, we can omit na.rm = TRUE when computing the mean:
+
+
+## printing a specific amount of rows
+
+
+
+## we could add a column indicating the minimum weight for each species for each
+
+
+## counting
+
+
+
+## if we wanted to count the number of rows of data for each sex
+
+
+
+
+## grouping by a variable, and summarizing it by counting the number of observations in that group
+
+
+
+## Previous example shows the use of count() to count the number of rows/observations for one factor (i.e., sex).
+## If we wanted to count combination of factors, such as sex and species, we would specify the first and the second factor as the arguments of count():
+
+```
+
