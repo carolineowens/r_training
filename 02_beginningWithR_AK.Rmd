@@ -23,9 +23,9 @@ Lesson plan:
 # CREATING OBJECTS IN R
 
 # R is a calculator! -------------
+3 + 5
 
-
-
+12 / 7
 
 
 # Assigning objects ---------------
@@ -37,11 +37,11 @@ Lesson plan:
 # Create an object called weight_kg and assign it the value, 55
 
 # assign the object
-
+weight_kg <- 55
 # print the object
-
+weight_kg
 # assign + print the object
-
+(weight_kg <- 55)
 
 # Run your code outside of the console ---------
 ## Mac: Command + Enter or Ctrl + Enter
@@ -52,8 +52,8 @@ Lesson plan:
 # Try commenting this code ---------
 # Comment above the line: this is the weight of a dog
 # comment to the side: # this particular dog was a large breed
-
-
+# this is the weight of a dog
+#--------- # this particular dog was a large breed
 
 
 
@@ -62,15 +62,19 @@ Lesson plan:
 # Let's try some calculations with our object, weight_kg
 
 # convert weight in kg to lbs
+2.2 * weight_kg
 
 # reassign weight
+weight_kg <- 57.5
 
 # convert new weight
+2.2 * weight_kg
 
 # create new object with calculation
+weight_lb <- 2.2 * weight_kg
 
 # reassign weight!
-
+weight_kg <- 100
 
 ### QUESTION: What do you think that the current value of weight_lb is? ------- 
 ```
@@ -81,8 +85,10 @@ Lesson plan:
 # Now we want to try using functions and changing their arguments
 
 # calculate the squareroot of weight_kg using the function sqrt()
+weight_kg <- sqrt(10)
 
 # calculate the squareroot of our object, weight_lb
+sqrt(weight_lb)
 
 
 
@@ -90,14 +96,19 @@ Lesson plan:
 
 
 #For example, let's look at the round() function, which rounds numbers to different decimal places.
+round(3.15466)
 
 # To find out the arguments for the round() function, we could use the args() function
+args(round)
 
 # change the base arguments of the round() function to 2
+round(3.15466, digits = 2)
 
 # another way to do it:
+round(3.15466, 2)
 
 # yet another way to do it:
+round(digits = 2, x = 3.15466)
 
 ```
 
@@ -110,9 +121,10 @@ Lesson plan:
 # we can create a vector in R using the c() function
 # our vector will be called weight_g
 # and will include the values 50, 60, 65, and 82
+weight_g <- c(50, 60, 65, 82)
 
 # What does this vector look like if we print it like we did weight_kg?
-
+weight_g
 
 
 
@@ -122,9 +134,10 @@ Lesson plan:
 # let's create a vector of the animals we weighed
 # our vector will be called animals
 # and will include mouse, rat, and dog
+animals <- c("mouse", "rat", "dog")
 
 # What does this vector look like?
-
+animals
 
 
 
@@ -145,22 +158,26 @@ Lesson plan:
 
 
 # Using the length() function, how many numbers are in our vector, weight_g
-
+length(weight_g) #how many numbers in this vector
 
 
 # and in our vector, animals?
-
+length(animals) #how many animals in this vector
 
 
 # Or, maybe I want to know whether my vector contains numbers (numeric) or words (characters)
-
+class(weight_g) #what kind of data are these vectors?
+class(animals)
 
 # A really useful function for many different kinds of data in R, especially more complex
 #ones, is the str() function, which let's you look at the structure of the data
-
+str(weight_g) #what is the structure of this vector?
+str(animals)
 
 # You can use the c() function to add other elements to your vector:
-
+weight_g <- c(weight_g, 90) # add to the end of the vector
+weight_g <- c(30, weight_g) # add to the beginning of the vector
+weight_g
 
 ```
 
@@ -172,21 +189,22 @@ Lesson plan:
 
 
 # create a new vector called animals, with mouse, rat, dog, cat
-
+animals <- c("mouse", "rat", "dog", "cat")
 
 # what is the number two position of our vector, animals?
-
+animals[2]
 
 
 # what are the number 3 AND number 2 positions of our vector, animals?
-
+animals[c(3, 2)]
 
 # We can leverage these brackets to create new objects ------- 
 
 # create a new vector called more_animals with a combination of the values from vector, animals
+more_animals <- animals[c(1, 2, 3, 2, 1, 4)]
 
 # print it and see what it looks like
-
+more_animals
 
 
 
@@ -196,16 +214,17 @@ Lesson plan:
 # Another common way to subset is by using logicals
 # TRUE will select the element with the same index
 # while FALSE will not:
-
+weight_g <- c(21, 34, 39, 54, 55)
 
 
 # we want to pull anything that is more than 50
+weight_g > 50   # will return logicals with TRUE for the indices that meet the condition
 
 ## so we can use this to select only the values above 50
-
+weight_g[weight_g > 50]
 
 # now print out our new weight_g vector
-
+weight_g
 
 
 
@@ -219,27 +238,29 @@ Lesson plan:
 # | (at least one of the conditions is true, OR)
 
 # in our vector weight_g subset values greater than 30 AND less than 50
+weight_g[weight_g > 30 & weight_g < 50]
 
 # now subset values less than or equal to 30 OR equal to 55
+weight_g[weight_g <= 30 | weight_g == 55]
 
 # now subset values greater than or equal to 30 AND equal to 21
-
+weight_g[weight_g >= 30 & weight_g == 21]
 
 
 
 
 # Searching for values in a vector ------
-
+animals <- c("mouse", "rat", "dog", "cat", "cat")
 
 # return both rat and cat using conditional test
-
+animals[animals == "cat" | animals == "rat"]
 
 # now try with the %in% function
-
+animals %in% c("rat", "cat", "dog", "duck", "goat", "bird", "fish")
 
 # use the logical vector created by %in% to return elements from animals
 # that are found in the character vector
-
+animals[animals %in% c("rat", "cat", "dog", "duck", "goat", "bird", "fish")]
 
 
 ```
@@ -254,13 +275,15 @@ Lesson plan:
 # As R was designed to analyze datasets, it includes the concept of missing data (which is uncommon in other programming languages). Missing data are represented in vectors as NA.
 
 # new vector called heights with values, 2, 4, 4, NA, and 6
+heights <- c(2, 4, 4, NA, 6)
 
 # try calculating the mean and maximum for this list
-
-
+mean(heights)
+max(heights)
 
 # try calculating the mean and maximum for this list with the argument, na.rm = TRUE
-
+mean(heights, na.rm = TRUE)
+max(heights, na.rm = TRUE)
 
 
 
@@ -275,10 +298,12 @@ Lesson plan:
 
 
 ## Extract those elements which are not missing values from heights
+heights[!is.na(heights)]
 
 ## Returns the object with incomplete cases removed.
+na.omit(heights) #The returned object is an atomic vector of type `"numeric"` (or #`"double"`)
 
 ## Extract those elements which are complete cases.
-
+heights[complete.cases(heights)]
 
 ```

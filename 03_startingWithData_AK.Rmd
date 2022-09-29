@@ -24,10 +24,9 @@ Downloading data and looking at dataframes.
 ```{r download data}
 # If you didn't get the package installed yet, you can type 
 # install.packages("tidyverse")
-install.packages("tidyverse")
 
 # load the library tidyverse
-
+library(tidyverse)
 
 # set your working directory (i.e. what folder you're working in)
 
