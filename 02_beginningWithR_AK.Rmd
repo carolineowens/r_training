@@ -1,0 +1,284 @@
+---
+title: "Beginning with R"
+author: "RCarpentry"
+date: '2022-08-29'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Lesson plan:
+ - write code in the console
+ - assign names to objects in R to save them in  the memory of R
+ - save code in scripts so we can come back to them later
+ - comment script to remember what we did
+ - learn how to use R functions to manipulate data in R
+ - learn about different kinds of data in R
+ - deal with data where some parts are missing
+ 
+ 
+```{r creating objects}
+# CREATING OBJECTS IN R
+
+# R is a calculator! -------------
+
+
+
+
+
+# Assigning objects ---------------
+# Try out the assignment operator:
+## Mac 'Option' + '-'
+## PC 'Alt' + '-'
+
+
+# Create an object called weight_kg and assign it the value, 55
+
+# assign the object
+
+# print the object
+
+# assign + print the object
+
+
+# Run your code outside of the console ---------
+## Mac: Command + Enter or Ctrl + Enter
+## PC: Ctrl + Enter
+
+
+
+# Try commenting this code ---------
+# Comment above the line: this is the weight of a dog
+# comment to the side: # this particular dog was a large breed
+
+
+
+
+
+# Calculations with objects ----------
+
+# Let's try some calculations with our object, weight_kg
+
+# convert weight in kg to lbs
+
+# reassign weight
+
+# convert new weight
+
+# create new object with calculation
+
+# reassign weight!
+
+
+### QUESTION: What do you think that the current value of weight_lb is? ------- 
+```
+
+
+
+```{r functions and arguments}
+# Now we want to try using functions and changing their arguments
+
+# calculate the squareroot of weight_kg using the function sqrt()
+
+# calculate the squareroot of our object, weight_lb
+
+
+
+# Functions with multiple arguments ------
+
+
+#For example, let's look at the round() function, which rounds numbers to different decimal places.
+
+# To find out the arguments for the round() function, we could use the args() function
+
+# change the base arguments of the round() function to 2
+
+# another way to do it:
+
+# yet another way to do it:
+
+```
+
+
+
+
+```{r vectors and data types}
+# Create a numeric vector -----
+
+# we can create a vector in R using the c() function
+# our vector will be called weight_g
+# and will include the values 50, 60, 65, and 82
+
+# What does this vector look like if we print it like we did weight_kg?
+
+
+
+
+
+# Create a non-numeric vector ------
+
+# let's create a vector of the animals we weighed
+# our vector will be called animals
+# and will include mouse, rat, and dog
+
+# What does this vector look like?
+
+
+
+
+# The "" are very important for a character vector. Otherwise, R will think that you have created three objects called mouse, rat, and dog, and will spit out an error message because it can't find those objects. 
+
+
+
+
+
+
+
+# Explore vector information ------
+
+# There are a lot of functions in R that let you explore vectors, let's play with a few
+
+# Maybe I want to know how many animals I weighed or observed, which I can find out with
+# the length() function
+
+
+# Using the length() function, how many numbers are in our vector, weight_g
+
+
+
+# and in our vector, animals?
+
+
+
+# Or, maybe I want to know whether my vector contains numbers (numeric) or words (characters)
+
+
+# A really useful function for many different kinds of data in R, especially more complex
+#ones, is the str() function, which let's you look at the structure of the data
+
+
+# You can use the c() function to add other elements to your vector:
+
+
+```
+
+
+```{r subsetting vectors}
+
+# We can extract values from vectors:
+# to do this, we use square brackets []
+
+
+# create a new vector called animals, with mouse, rat, dog, cat
+
+
+# what is the number two position of our vector, animals?
+
+
+
+# what are the number 3 AND number 2 positions of our vector, animals?
+
+
+# We can leverage these brackets to create new objects ------- 
+
+# create a new vector called more_animals with a combination of the values from vector, animals
+
+# print it and see what it looks like
+
+
+
+
+
+# Conditional subsetting: -----
+
+# Another common way to subset is by using logicals
+# TRUE will select the element with the same index
+# while FALSE will not:
+
+
+
+# we want to pull anything that is more than 50
+
+## so we can use this to select only the values above 50
+
+
+# now print out our new weight_g vector
+
+
+
+
+
+
+
+
+
+# We can also COMBINE tests using
+# & (both conditions are true, AND) 
+# | (at least one of the conditions is true, OR)
+
+# in our vector weight_g subset values greater than 30 AND less than 50
+
+# now subset values less than or equal to 30 OR equal to 55
+
+# now subset values greater than or equal to 30 AND equal to 21
+
+
+
+
+
+# Searching for values in a vector ------
+
+
+# return both rat and cat using conditional test
+
+
+# now try with the %in% function
+
+
+# use the logical vector created by %in% to return elements from animals
+# that are found in the character vector
+
+
+
+```
+
+
+
+
+
+
+
+```{r missing data}
+# As R was designed to analyze datasets, it includes the concept of missing data (which is uncommon in other programming languages). Missing data are represented in vectors as NA.
+
+# new vector called heights with values, 2, 4, 4, NA, and 6
+
+# try calculating the mean and maximum for this list
+
+
+
+# try calculating the mean and maximum for this list with the argument, na.rm = TRUE
+
+
+
+
+
+
+
+
+# other functions can help you with missing data like:
+# is.na()
+# na.omit()
+# complete.cases()
+
+
+## Extract those elements which are not missing values from heights
+
+## Returns the object with incomplete cases removed.
+
+## Extract those elements which are complete cases.
+
+
+```
