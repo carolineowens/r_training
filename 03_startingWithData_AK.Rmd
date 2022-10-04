@@ -29,40 +29,46 @@ Downloading data and looking at dataframes.
 library(tidyverse)
 
 # set your working directory (i.e. what folder you're working in)
+#Error message: cannot change working directory
 
 # create an object that will be our dataset
+surveys <- read_csv("surveys.csv")
 
 # look at the first few lines of the dataset
+head(surveys)
 
 # print the dataset
+print(surveys)
 
 # look at the last few lines of the dataset
+tail(surveys)
 
 # pull the data up in a new window
+#view(surveys)
 
 # usually good to comment this command out
 
 
 
 # What does a horizontal row in this dataframe represent?
+  # An observation of a specific animal
 
 # What does a vertical column in this dataframe represent?
-
+  # Some attribute of those data, including the data of observation, the species and size of the animal, and the type of plot they were observed in in our experiment
 
 
 
 
 
 # what is the structure of our data? -----
-
+str(surveys)
 
 # How many observations do we have?
-
+  # 34,786 observations
 
 # How many variables do we have collected from each observation?
-
-
-
+  # 13 variables
+# what the first few values for each of these variables are and also what kind of variable they are: eg numeric vs. character
 
 
 ```
@@ -72,31 +78,33 @@ What is factored data?
 ```{r factored data}
 
 # What does it mean for a variable to be a factor?
-
+# Factored data means that a column in your dataframe that might have numeric or character values may actually have a "hidden meaning" in which those numbers or characters actually represent groups or categories of data
 
 # Let's change the assignment of this column from a character to a factor
+surveys$plot_id <- factor(surveys$plot_id)
 
 # We can see what this function did by using the summary() function.
-
+summary(surveys$plot_id)
 
 
 
 
 # Let's create a factored vector to explore more about vectors ----
 # our vector, series will include factors: one, two, three, two
-
+series <- factor(c("one", "two", "three", "two"))
 
 # what's the order of these factors?
-
+levels(series) # alphabetical
 
 # how many levels are there? use the nlevels() function
-
+nlevels(series)
 
 # we want to order these levels
 # using the levels argument
-
+series <- factor(series, levels = c("one", "two", "three"))
 
 # call the levels of series now
+levels(series)
 
 ```
 
@@ -108,22 +116,28 @@ Let's try converting our variables.
 
 # You can also convert factors back to characters or numeric values 
 
+as.character(series) # this can be helpful when we plot
 
+class(series)
 
+series <- as.character(series)
 
+class(series)
 
 # Converting a factor to a numeric vector is a little more tricky
 # first we'll try with the factor() function
+year_fct <- factor(c(1990, 1983, 1977, 1998, 1990))
 
 # If we use the as.numeric() function on its own:
-
+as.numeric(year_fct) # returns just the level of the factor each number corresponds to
 
 # To fix:
 # we need to first make the numbers into characters and THEN convert to numeric
-
+as.numeric(as.character(year_fct))
 
 # Or, we can use the levels() function, where we make the levels of year_fct
 # numeric, and then use that to apply to the year_fct vector. 
+as.numeric(levels(year_fct))[year_fct]
 
 ```
 
@@ -135,10 +149,10 @@ Let's plot some data!
 
 # When you have factored data, you can plot your data based on those factors to see,
 # for example, a count of the number of observations in each plot type
-
+plot(surveys$plot_id)
 
 
 # Maybe we might want to know if animals are bigger in one of the treatment groups
-
+boxplot(weight ~ plot_id, data = surveys)
 
 ```
